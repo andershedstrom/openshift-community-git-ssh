@@ -1,4 +1,8 @@
 #!/bin/bash -e
 
 touch $HOME/.netrc
-mkdir $OPENSHIFT_DATA_DIR/git-ssh
+DIRECTORY=$OPENSHIFT_DATA_DIR/git-ssh
+if [ ! -d "$DIRECTORY" ]; then
+  mkdir $DIRECTORY
+fi
+cd $DIRECTORY && ssh-keygen -q -N "" -f id_rsa
